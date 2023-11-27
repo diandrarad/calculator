@@ -37,10 +37,10 @@ function appendOperator(op) {
 }
 
 function appendDecimal() {
-    if (!document.getElementById('display').value.includes(".")) {
+    if (!document.getElementById('display').value.includes(".") && !allowComma) {
         document.getElementById('display').value += '.';
         concatNum = true;
-    } else if  (allowComma) {
+    } else if (allowComma) {
         document.getElementById('display').value = '0.';
         allowComma = false;
         concatNum = true;
