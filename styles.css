@@ -10,7 +10,8 @@ body {
 #calculator {
     text-align: center;
     background-color: rgb(99, 97, 97);
-    padding: 15px 5px 10px 5px;
+    padding: 25px 20px 15px 20px;
+    border-radius: 25px;
 }
 
 #num-op {
@@ -18,7 +19,11 @@ body {
     width: 235px;
     text-align: right;
     background-color: rgb(255, 255, 255);
+    padding-right: 10px;
     border-bottom: none;
+    border-radius: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 #display {
@@ -27,8 +32,11 @@ body {
     font-size: 30px;
     text-align: right;
     background-color: rgb(255, 255, 255);
+    padding-right: 10px;
     margin-bottom: 5px;
     border-top: none;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 input {
@@ -39,6 +47,7 @@ input {
 #display ~ input {
     width: 50px;
     margin: 5px;
+    border-radius: 15px;
 }
 
 .operator {
