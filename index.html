@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
@@ -26,7 +27,7 @@
         <input type="button" value="1" onclick="appendNumber('1')">
         <input type="button" value="2" onclick="appendNumber('2')">
         <input type="button" value="3" onclick="appendNumber('3')">
-        <input type="button" class="operator" value="*" onclick="appendOperator('*')">
+        <input type="button" class="operator" value="×" onclick="appendOperator('×')">
         <br>
         <input type="button" value="0" onclick="appendNumber('0')">
         <input type="button" id="decimal" value="." onclick="appendDecimal()">
