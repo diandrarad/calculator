@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
@@ -29,8 +30,8 @@
         <br>
         <input type="button" value="0" onclick="appendNumber('0')">
         <input type="button" id="decimal" value="." onclick="appendDecimal()">
-        <input type="button" class="equals" value="=" onclick="calculate()">
-        <input type="button" class="operator" value="/" onclick="appendOperator('/')">
+        <input type="button" class="equals" value="=" onclick="calculate(true)">
+        <input type="button" class="operator" value="÷" onclick="appendOperator('÷')">
         <br>
         <input type="button" class="clear" value="C" onclick="clearDisplay()">
         <input type="button" class="backspace" value="⌫" onclick="backspace()">
