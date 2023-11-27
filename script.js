@@ -72,7 +72,7 @@ function calculate() {
         return;
     }
     firstNumber = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
-    displayedResult = (Math.round(firstNumber * 10) / 10).toString();
+    displayedResult = (Math.round(firstNumber * 1000) / 1000).toString();
     document.getElementById('display').value = displayedResult;
     document.getElementById('num-op').value = displayedResult.concat(" ", nextOperator);
     secondNumber = '';
