@@ -7,6 +7,7 @@ let concatNum = false;
 let allowComma = false;
 
 function appendNumber(num) {
+    allowComma = false;
     if (concatNum) {
         document.getElementById('display').value += num;
     } else {
