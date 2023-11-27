@@ -24,18 +24,21 @@ function appendNumber(num) {
 }
 
 function appendOperator(op) {
-    concatNum = false;
-    if (operator === '') {
-        operator = op;
-    } else {
-        operator = document.getElementById('num-op').value.slice(-1);
+    if (firstNumber !== '') {
+        concatNum = false;
+        if (operator === '') {
+            operator = op;
+        } else {
+            operator = document.getElementById('num-op').value.slice(-1);
+        }
+        nextOperator = op;
+        let currently = displayedResult.concat(" ", op);
+        document.getElementById('num-op').value = currently;
+        if (firstNumber !== '' && secondNumber !== '') {
+            calculate();
+        }
     }
-    nextOperator = op;
-    let currently = displayedResult.concat(" ", op);
-    document.getElementById('num-op').value = currently;
-    if (firstNumber !== '' && secondNumber !== '') {
-        calculate();
-    }
+
 }
 
 function appendDecimal() {
@@ -55,28 +58,33 @@ function clearDisplay() {
     nextOperator = '';
     secondNumber = '';
     concatNum = false;
+    displayedResult = '';
     document.getElementById('num-op').value = '';
     document.getElementById('display').value = '0';
 }
 
 function backspace() {
-    let currentValue = document.getElementById('display').value;
-    document.getElementById('display').value = currentValue.slice(0, -1);
+    if (document.getElementById('display').value != 0) {
+        let currentValue = document.getElementById('display').value;
+        document.getElementById('display').value = currentValue.slice(0, -1);
+    }
 }
 
 function calculate() {
-    concatNum = false;
-    allowComma = true;
-    if (secondNumber === '0' && operator === '/') {
-        alert('Cannot divide by zero!');
-        clearDisplay();
-        return;
+    if (firstNumber !== '') {
+        concatNum = false;
+        allowComma = true;
+        if (secondNumber === '0' && operator === '/') {
+            alert('Cannot divide by zero!');
+            clearDisplay();
+            return;
+        }
+        firstNumber = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+        displayedResult = (Math.round(firstNumber * 1000) / 1000).toString();
+        document.getElementById('display').value = displayedResult;
+        document.getElementById('num-op').value = displayedResult.concat(" ", nextOperator);
+        secondNumber = '';
     }
-    firstNumber = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
-    displayedResult = (Math.round(firstNumber * 1000) / 1000).toString();
-    document.getElementById('display').value = displayedResult;
-    document.getElementById('num-op').value = displayedResult.concat(" ", nextOperator);
-    secondNumber = '';
 }
 
 function operate(op, a, b) {
