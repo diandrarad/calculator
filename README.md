@@ -1,7 +1,7 @@
 # Calculator
 
 ## Introduction
-This project involves creating a simple on-screen calculator using JavaScript, HTML, and CSS. The calculator will support basic math operations, handle user input, and display results. It's an opportunity to apply the fundamentals of JavaScript, HTML, and CSS that you've learned throughout the Foundations Course.
+This project is part of The Odin Project's Foundations Course. It involves creating a simple on-screen calculator using JavaScript, HTML, and CSS. The calculator will support basic math operations, handle user input, and display results. It's an opportunity to apply the fundamentals of JavaScript, HTML, and CSS that you've learned throughout the Foundations Course.
 
 ## Usage
 1. Press number buttons to input numbers.
