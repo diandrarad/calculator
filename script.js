@@ -5,27 +5,30 @@ let nextOperator = '';
 let displayedResult = '';
 let concatNum = false;
 let allowComma = false;
+let fromEqual = false;
 
 function appendNumber(num) {
     allowComma = false;
-    if (concatNum) {
-        document.getElementById('display').value += num;
-    } else {
+    if (document.getElementById('display').value == 0 || !concatNum) {
         document.getElementById('display').value = num;
         concatNum = true;
+    } else if (concatNum) {
+        document.getElementById('display').value += num;
     }
+    let givenNum = (Math.round(Number(document.getElementById('display').value) * 1000) / 1000).toString();
     if (firstNumber === '' || operator === '') {
-        firstNumber = document.getElementById('display').value;
+        firstNumber = givenNum;
         displayedResult = firstNumber;
     } else {
-        secondNumber = document.getElementById('display').value;
+        secondNumber = givenNum;
     }
 }
 
 function appendOperator(op) {
     if (firstNumber !== '') {
         concatNum = false;
-        if (operator === '') {
+        if (operator === '' || fromEqual) {
+            fromEqual = false;
             operator = op;
         } else {
             operator = document.getElementById('num-op').value.slice(-1);
@@ -42,21 +45,21 @@ function appendOperator(op) {
 
 function appendDecimal() {
     if (!document.getElementById('display').value.includes(".") && !allowComma) {
-        document.getElementById('display').value += '.';
         concatNum = true;
+        document.getElementById('display').value += '.';
     } else if (allowComma) {
-        document.getElementById('display').value = '0.';
         allowComma = false;
         concatNum = true;
+        document.getElementById('display').value = '0.';
     }
 }
 
 function clearDisplay() {
+    concatNum = false;
     firstNumber = '';
     operator = '';
     nextOperator = '';
     secondNumber = '';
-    concatNum = false;
     displayedResult = '';
     document.getElementById('num-op').value = '';
     document.getElementById('display').value = '0';
@@ -65,11 +68,15 @@ function clearDisplay() {
 function backspace() {
     if (document.getElementById('display').value != 0) {
         let currentValue = document.getElementById('display').value;
-        document.getElementById('display').value = currentValue.slice(0, -1);
+        if (currentValue.length == 1) {
+            document.getElementById('display').value = '0';
+        } else {
+            document.getElementById('display').value = currentValue.slice(0, -1);
+        }
     }
 }
 
-function calculate() {
+function calculate(equal=false) {
     if (firstNumber !== '' && operator !== '') {
         concatNum = false;
         allowComma = true;
@@ -78,10 +85,18 @@ function calculate() {
             clearDisplay();
             return;
         }
-        firstNumber = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
-        displayedResult = (Math.round(firstNumber * 1000) / 1000).toString();
+        let result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+        displayedResult = (Math.round(result * 1000) / 1000).toString();
         document.getElementById('display').value = displayedResult;
-        document.getElementById('num-op').value = displayedResult.concat(" ", nextOperator);
+        if (equal) {
+            fromEqual = true;
+            let displayedEqualResult = firstNumber + " " + operator + " " + secondNumber + " =";
+            document.getElementById('num-op').value = displayedEqualResult;
+        } else {
+            let displayedEqualResult = displayedResult.concat(" ", nextOperator);
+            document.getElementById('num-op').value = displayedEqualResult;
+        }
+        firstNumber = result;
         secondNumber = '';
     }
 }
@@ -94,7 +109,7 @@ function operate(op, a, b) {
             return a - b;
         case '*':
             return a * b;
-        case '/':
+        case '÷':
             return a / b;
         default:
             return 'Error';
@@ -110,7 +125,7 @@ document.addEventListener('keydown', function (event) {
     } else if (key === '+' || key === '-' || key === '*' || key === '/') {
         appendOperator(key);
     } else if (key === 'Enter' || key === '=') {
-        calculate();
+        calculate(true);
     } else if (key === 'Backspace') {
         backspace();
     }
