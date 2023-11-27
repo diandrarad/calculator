@@ -13,8 +13,9 @@ function appendNumber(num) {
         document.getElementById('display').value = num;
         concatNum = true;
     }
-    if (firstNumber === '') {
+    if (firstNumber === '' || operator === '') {
         firstNumber = document.getElementById('display').value;
+        console.log(firstNumber);
         displayedResult = firstNumber;
     } else {
         secondNumber = document.getElementById('display').value;
@@ -65,7 +66,6 @@ function backspace() {
 function calculate() {
     concatNum = false;
     allowComma = true;
-    secondNumber = document.getElementById('display').value;
     if (secondNumber === '' && operator === '/') {
         alert('Cannot divide by zero!');
         clearDisplay();
