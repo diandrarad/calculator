@@ -9,11 +9,11 @@ let fromEqual = false;
 
 function appendNumber(num) {
     allowComma = false;
-    if (document.getElementById('display').value == 0 || !concatNum) {
+    if (concatNum) {
+        document.getElementById('display').value += num;
+    } else if (document.getElementById('display').value == 0 || !concatNum) {
         document.getElementById('display').value = num;
         concatNum = true;
-    } else if (concatNum) {
-        document.getElementById('display').value += num;
     }
     let givenNum = (Math.round(Number(document.getElementById('display').value) * 1000) / 1000).toString();
     if (firstNumber === '' || operator === '') {
@@ -55,7 +55,6 @@ function appendDecimal() {
 }
 
 function clearDisplay() {
-    concatNum = false;
     firstNumber = '';
     operator = '';
     nextOperator = '';
@@ -66,7 +65,9 @@ function clearDisplay() {
 }
 
 function backspace() {
-    if (document.getElementById('display').value != 0) {
+    if (document.getElementById('num-op').value.includes("=")) {
+        document.getElementById('num-op').value = '';
+    } else if (document.getElementById('display').value != 0) {
         let currentValue = document.getElementById('display').value;
         if (currentValue.length == 1) {
             document.getElementById('display').value = '0';
