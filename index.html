@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="num-op" disabled><br>
+        <input type="text" id="display" value="0" disabled>
+        <br>
+        <input type="button" value="7" onclick="appendNumber('7')">
+        <input type="button" value="8" onclick="appendNumber('8')">
+        <input type="button" value="9" onclick="appendNumber('9')">
+        <input type="button" class="operator" value="+" onclick="appendOperator('+')">
+        <br>
+        <input type="button" value="4" onclick="appendNumber('4')">
+        <input type="button" value="5" onclick="appendNumber('5')">
+        <input type="button" value="6" onclick="appendNumber('6')">
+        <input type="button" class="operator" value="-" onclick="appendOperator('-')">
+        <br>
+        <input type="button" value="1" onclick="appendNumber('1')">
+        <input type="button" value="2" onclick="appendNumber('2')">
+        <input type="button" value="3" onclick="appendNumber('3')">
+        <input type="button" class="operator" value="*" onclick="appendOperator('*')">
+        <br>
+        <input type="button" value="0" onclick="appendNumber('0')">
+        <input type="button" id="decimal" value="." onclick="appendDecimal()">
+        <input type="button" class="equals" value="=" onclick="calculate()">
+        <input type="button" class="operator" value="/" onclick="appendOperator('/')">
+        <br>
+        <input type="button" class="clear" value="C" onclick="clearDisplay()">
+        <input type="button" class="backspace" value="⌫" onclick="backspace()">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
