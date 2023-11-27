@@ -16,7 +16,6 @@ function appendNumber(num) {
     }
     if (firstNumber === '' || operator === '') {
         firstNumber = document.getElementById('display').value;
-        console.log(firstNumber);
         displayedResult = firstNumber;
     } else {
         secondNumber = document.getElementById('display').value;
@@ -71,7 +70,7 @@ function backspace() {
 }
 
 function calculate() {
-    if (firstNumber !== '') {
+    if (firstNumber !== '' && operator !== '') {
         concatNum = false;
         allowComma = true;
         if (secondNumber === '0' && operator === '/') {
@@ -104,11 +103,13 @@ function operate(op, a, b) {
 
 document.addEventListener('keydown', function (event) {
     const key = event.key;
-    if (!isNaN(key) || key === '.') {
+    if (!isNaN(key)) {
         appendNumber(key);
+    } else if (key === '.') {
+        appendDecimal();
     } else if (key === '+' || key === '-' || key === '*' || key === '/') {
         appendOperator(key);
-    } else if (key === 'Enter') {
+    } else if (key === 'Enter' || key === '=') {
         calculate();
     } else if (key === 'Backspace') {
         backspace();
