@@ -55,7 +55,7 @@ function clearDisplay() {
     secondNumber = '';
     concatNum = false;
     document.getElementById('num-op').value = '';
-    document.getElementById('display').value = '';
+    document.getElementById('display').value = '0';
 }
 
 function backspace() {
@@ -66,7 +66,7 @@ function backspace() {
 function calculate() {
     concatNum = false;
     allowComma = true;
-    if (secondNumber === '' && operator === '/') {
+    if (secondNumber === '0' && operator === '/') {
         alert('Cannot divide by zero!');
         clearDisplay();
         return;
