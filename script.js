@@ -60,6 +60,7 @@ function clearDisplay() {
     nextOperator = '';
     secondNumber = '';
     displayedResult = '';
+    concatNum = false;
     document.getElementById('num-op').value = '';
     document.getElementById('display').value = '0';
 }
@@ -78,9 +79,9 @@ function backspace() {
 }
 
 function calculate(equal=false) {
-    if (firstNumber !== '' && operator !== '') {
+    if (firstNumber !== '' && operator !== '' && secondNumber !== '') {
         concatNum = false;
-        allowComma = true;
+        allowComma = false;
         if (secondNumber === '0' && operator === '/') {
             alert('Cannot divide by zero!');
             clearDisplay();
@@ -93,6 +94,9 @@ function calculate(equal=false) {
             fromEqual = true;
             let displayedEqualResult = firstNumber + " " + operator + " " + secondNumber + " =";
             document.getElementById('num-op').value = displayedEqualResult;
+            concatNum = true;
+            allowComma = false;
+            operator = '';
         } else {
             let displayedEqualResult = displayedResult.concat(" ", nextOperator);
             document.getElementById('num-op').value = displayedEqualResult;
