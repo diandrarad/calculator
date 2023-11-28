@@ -9,7 +9,7 @@ let fromEqual = false;
 
 function appendNumber(num) {
     allowComma = false;
-    if (concatNum) {
+    if (concatNum && document.getElementById('display').value !== '0') {
         document.getElementById('display').value += num;
     } else if (document.getElementById('display').value == 0 || !concatNum) {
         document.getElementById('display').value = num;
@@ -68,7 +68,7 @@ function clearDisplay() {
 function backspace() {
     if (document.getElementById('num-op').value.includes("=")) {
         document.getElementById('num-op').value = '';
-    } else if (document.getElementById('display').value != 0) {
+    } else if (document.getElementById('display').value !== '0') {
         let currentValue = document.getElementById('display').value;
         if (currentValue.length == 1) {
             document.getElementById('display').value = '0';
@@ -80,24 +80,27 @@ function backspace() {
 
 function calculate(equal=false) {
     if (firstNumber !== '' && operator !== '' && secondNumber !== '') {
-        concatNum = false;
-        allowComma = false;
         if (secondNumber === '0' && operator === '/') {
             alert('Cannot divide by zero!');
             clearDisplay();
             return;
         }
+        secondNumber = document.getElementById('display').value;
         let result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
         displayedResult = (Math.round(result * 1000) / 1000).toString();
         document.getElementById('display').value = displayedResult;
         if (equal) {
             fromEqual = true;
-            let displayedEqualResult = firstNumber + " " + operator + " " + secondNumber + " =";
+            let displayFirst = (Math.round(firstNumber * 1000) / 1000).toString();
+            let displaySecond = (Math.round(secondNumber * 1000) / 1000).toString();
+            let displayedEqualResult = displayFirst + " " + operator + " " + displaySecond + " =";
             document.getElementById('num-op').value = displayedEqualResult;
             concatNum = true;
             allowComma = false;
             operator = '';
         } else {
+            allowComma = true;
+            concatNum = false;
             let displayedEqualResult = displayedResult.concat(" ", nextOperator);
             document.getElementById('num-op').value = displayedEqualResult;
         }
