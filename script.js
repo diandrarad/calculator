@@ -27,6 +27,9 @@ function appendNumber(num) {
 function appendOperator(op) {
     if (firstNumber !== '') {
         concatNum = false;
+        if (secondNumber !== '') {
+            displayedResult = (Math.round(Number(document.getElementById('display').value) * 1000) / 1000).toString();;
+        }
         if (operator === '' || fromEqual) {
             fromEqual = false;
             operator = op;
@@ -80,7 +83,7 @@ function backspace() {
 
 function calculate(equal=false) {
     if (firstNumber !== '' && operator !== '' && secondNumber !== '') {
-        if (secondNumber === '0' && operator === '/') {
+        if (secondNumber === '0' && operator === '÷') {
             alert('Cannot divide by zero!');
             clearDisplay();
             return;
